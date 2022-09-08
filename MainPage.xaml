@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiTest.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiTest">
+
+    <Grid
+        ColumnDefinitions="*,*,*"
+        ColumnSpacing="5"
+        RowDefinitions="40,40,20,*"
+        RowSpacing="5">
+
+        <Button
+            Grid.Column="0"
+            Clicked="Button_Clicked_1"
+            Text="test 1" />
+        <Button
+            Grid.Column="1"
+            Clicked="Button_Clicked_2"
+            Text="test 2" />
+        <Button
+            Grid.Column="2"
+            Clicked="Button_Clicked_3"
+            Text="test 3" />
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            FontSize="Caption"
+            HorizontalTextAlignment="Center"
+            Text="without ItemTemplate" />
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            FontSize="Caption"
+            HorizontalTextAlignment="Center"
+            Text="with ItemTemplate" />
+        
+        <Label
+            Grid.Row="1"
+            Grid.Column="2"
+            FontSize="Caption"
+            HorizontalTextAlignment="Center"
+            Text="with ItemTemplate and static resource" />
+
+
+        <Label
+            x:Name="LabelMemory"
+            Grid.Row="2"
+            Grid.ColumnSpan="3"
+            HorizontalTextAlignment="Center"
+            Text="Memory" />
+
+        <CollectionView
+            x:Name="CollectionView1"
+            Grid.Row="3"
+            Grid.Column="0" />
+
+        <CollectionView
+            x:Name="CollectionView2"
+            Grid.Row="3"
+            Grid.Column="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:DataModel">
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding ID}" />
+                        <Label Text="{Binding Name}" />
+                        <Label Text="{Binding Data1}" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <CollectionView
+            x:Name="CollectionView3"
+            Grid.Row="3"
+            Grid.Column="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:DataModel">
+                    <HorizontalStackLayout>
+                        <Label
+                            Background="{StaticResource SecondaryBrush}"
+                            Text="{Binding ID}" />
+                        <Label Text="{Binding Name}" />
+                        <Label Text="{Binding Data1}" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+
+
+
+</ContentPage>
