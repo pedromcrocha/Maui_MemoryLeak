@@ -30,7 +30,7 @@
         List<DataModel> GetNewData()
         {
             List<DataModel> data = new();
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 5; i++)
             {
                 id += 1;
                 data.Add(new DataModel() { ID = id, Name = $"Name{id}", Data1 = "data1", Data2 = "data2", Data3 = "data3" });
@@ -40,8 +40,13 @@
 
         void UpdateMemory(int testid)
         {
-            GC.Collect(3, GCCollectionMode.Forced,true);
-            this.LabelMemory.Text = $"Memory {GC.GetTotalMemory(true):N0} after test {testid}"; 
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
+            this.LabelMemory.Text = $"Memory {GC.GetTotalMemory(true):N0} after test {testid}";
+
+            this.LabelAlive.Text = $"Objects alive {Refs.GetAliveCount()}";
+            Refs.Print();
         }
     }
 

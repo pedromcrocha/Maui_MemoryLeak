@@ -8,7 +8,7 @@
     <Grid
         ColumnDefinitions="*,*,*"
         ColumnSpacing="5"
-        RowDefinitions="40,40,20,*"
+        RowDefinitions="40,40,20,20,*"
         RowSpacing="5">
 
         <Button
@@ -37,7 +37,7 @@
             FontSize="Caption"
             HorizontalTextAlignment="Center"
             Text="with ItemTemplate" />
-        
+
         <Label
             Grid.Row="1"
             Grid.Column="2"
@@ -53,39 +53,54 @@
             HorizontalTextAlignment="Center"
             Text="Memory" />
 
+        <Label
+            x:Name="LabelAlive"
+            Grid.Row="3"
+            Grid.ColumnSpan="3"
+            HorizontalTextAlignment="Center"
+            Text="Objects alive" />
+
         <CollectionView
             x:Name="CollectionView1"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="0" />
 
         <CollectionView
             x:Name="CollectionView2"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="local:DataModel">
-                    <HorizontalStackLayout>
+                    <VerticalStackLayout local:Refs.IsWatched="True">
                         <Label Text="{Binding ID}" />
-                        <Label Text="{Binding Name}" />
-                        <Label Text="{Binding Data1}" />
-                    </HorizontalStackLayout>
+                        <Label
+                            Margin="10"
+                            Text="{Binding Name}" />
+                        <Label
+                            Margin="10"
+                            Text="{Binding Data1}" />
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
         <CollectionView
             x:Name="CollectionView3"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="local:DataModel">
-                    <HorizontalStackLayout>
+                    <VerticalStackLayout local:Refs.IsWatched="True">
                         <Label
                             Background="{StaticResource SecondaryBrush}"
                             Text="{Binding ID}" />
-                        <Label Text="{Binding Name}" />
-                        <Label Text="{Binding Data1}" />
-                    </HorizontalStackLayout>
+                        <Label
+                            Margin="10"
+                            Text="{Binding Name}" />
+                        <Label
+                            Margin="10"
+                            Text="{Binding Data1}" />
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
