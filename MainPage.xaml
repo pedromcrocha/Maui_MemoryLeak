@@ -8,7 +8,7 @@
     <Grid
         ColumnDefinitions="*,*,*"
         ColumnSpacing="5"
-        RowDefinitions="40,40,20,20,*"
+        RowDefinitions="40,60,20,20,*"
         RowSpacing="5">
 
         <Button
@@ -29,21 +29,21 @@
             Grid.Column="0"
             FontSize="Caption"
             HorizontalTextAlignment="Center"
-            Text="without ItemTemplate" />
+            Text="BackgroundColor=&quot;{StaticResource Gray300}&quot;" />
 
         <Label
             Grid.Row="1"
             Grid.Column="1"
             FontSize="Caption"
             HorizontalTextAlignment="Center"
-            Text="with ItemTemplate" />
+            Text="Background=&quot;{StaticResource Gray300}&quot;" />
 
         <Label
             Grid.Row="1"
             Grid.Column="2"
             FontSize="Caption"
             HorizontalTextAlignment="Center"
-            Text="with ItemTemplate and static resource" />
+            Text="Background=&quot;{StaticResource Gray300Brush}&quot;" />
 
 
         <Label
@@ -63,7 +63,23 @@
         <CollectionView
             x:Name="CollectionView1"
             Grid.Row="4"
-            Grid.Column="0" />
+            Grid.Column="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:DataModel">
+                    <VerticalStackLayout
+                        local:Refs.IsWatched="True"
+                        BackgroundColor="{StaticResource Gray300}">
+                        <Button Text="{Binding ID}" />
+                        <Label
+                            Margin="10"
+                            Text="{Binding Name}" />
+                        <Label
+                            Margin="10"
+                            Text="{Binding Data1}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
         <CollectionView
             x:Name="CollectionView2"
@@ -71,8 +87,10 @@
             Grid.Column="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="local:DataModel">
-                    <VerticalStackLayout local:Refs.IsWatched="True">
-                        <Label Text="{Binding ID}" />
+                    <VerticalStackLayout
+                        local:Refs.IsWatched="True"
+                        Background="{StaticResource Gray300}">
+                        <Button Text="{Binding ID}" />
                         <Label
                             Margin="10"
                             Text="{Binding Name}" />
@@ -90,10 +108,10 @@
             Grid.Column="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="local:DataModel">
-                    <VerticalStackLayout local:Refs.IsWatched="True">
-                        <Label
-                            Background="{StaticResource SecondaryBrush}"
-                            Text="{Binding ID}" />
+                    <VerticalStackLayout
+                        local:Refs.IsWatched="True"
+                        Background="{StaticResource Gray300Brush}">
+                        <Button Text="{Binding ID}" />
                         <Label
                             Margin="10"
                             Text="{Binding Name}" />

@@ -10,20 +10,19 @@
         private void Button_Clicked_1(object sender, EventArgs e)
         {
             this.CollectionView1.ItemsSource = GetNewData();
-            UpdateMemory(1);
+            UpdateMemoryAsync(1);
         }
 
         private void Button_Clicked_2(object sender, EventArgs e)
         {
             this.CollectionView2.ItemsSource = GetNewData();
-            UpdateMemory(2);
-
+            UpdateMemoryAsync(2);
         }
 
         private void Button_Clicked_3(object sender, EventArgs e)
         {
             this.CollectionView3.ItemsSource = GetNewData();
-            UpdateMemory(3);
+            UpdateMemoryAsync(3);
         }
 
         int id;
@@ -38,8 +37,10 @@
             return data;
         }
 
-        void UpdateMemory(int testid)
+        async Task  UpdateMemoryAsync(int testid)
         {
+            await Task.Delay(500);
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
